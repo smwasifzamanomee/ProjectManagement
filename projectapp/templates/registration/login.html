@@ -1,0 +1,40 @@
+<!-- projectapp/templates/registration/login.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="max-w-md mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Login</h2>
+    <form method="post" action="{% url 'login' %}" class="space-y-4">
+      {% csrf_token %}
+      
+      <!-- Username Field with Error Handling -->
+      <div>
+        <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" name="username" id="id_username" autocomplete="username" required
+               class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+        {% if form.username.errors %}
+          <p class="text-red-500 text-xs italic mt-1">{{ form.username.errors }}</p>
+        {% endif %}
+      </div>
+      
+      <!-- Password Field with Error Handling -->
+      <div>
+        <label for="id_password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password" required
+               class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+        {% if form.password.errors %}
+          <p class="text-red-500 text-xs italic mt-1">{{ form.password.errors }}</p>
+        {% endif %}
+      </div>
+      
+      <!-- Login Button -->
+      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+    </form>
+    
+    <!-- Registration Link -->
+    <div class="mt-4 text-center">
+      <h5 class="text-sm">Don't have an account?</h5>
+      <a href="{% url 'register' %}" class="text-blue-600 font-medium">Register</a>
+    </div>
+  </div>
+{% endblock %}

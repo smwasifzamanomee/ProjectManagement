@@ -1,0 +1,39 @@
+<!-- projectapp/templates/project_detail.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="max-w-3xl mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">{{ project.name }}</h1>
+    <p class="text-gray-700">{{ project.description }}</p>
+    
+    <h2 class="text-2xl mt-8 mb-4">Tasks</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Assigned To</th>
+            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Due Date</th>
+            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          {% for task in project.tasks.all %}
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">{{ task.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ task.status }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ task.assigned_to }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ task.due_date }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <a href="{% url 'update_task_status' task.id %}" class="text-blue-600 hover:underline">Edit</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    <a href="{% url 'create_task' project.id %}" class="block mt-4 text-blue-600">Add Task</a>
+  </div>
+{% endblock %}
