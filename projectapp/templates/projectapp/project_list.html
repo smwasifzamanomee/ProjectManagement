@@ -1,11 +1,10 @@
-<!-- projectapp/templates/projects.html -->
 {% extends "base_generic.html" %}
 
 {% block content %}
 <div class="max-w-3xl mx-auto mt-8">
     <h1 class="text-3xl font-bold mb-4">Projects</h1>
     {% if user.is_staff %}
-    <a href="{% url 'create_project' %}" class="block mt-4 text-blue-600">Create New Project</a>
+    <a href="{% url 'create_project' %}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Create New Project</a>
     {% endif %}
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
@@ -24,10 +23,10 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ project.description }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ project.members.all|join:", " }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <a href="{% url 'project_detail' project.id %}" class="text-blue-600 hover:underline">View</a>
+                        <a href="{% url 'project_detail' project.id %}" class="bg-green-500 text-white px-4 py-2 rounded mb-4 inline-block">View</a>
                         {% if user.is_staff %}
-                        <a href="{% url 'update_project' project.id %}" class="text-blue-600 hover:underline">Edit</a>
-                        <a href="{% url 'delete_project' project.id %}" class="text-red-600 hover:underline">Delete</a>
+                        <a href="{% url 'update_project' project.id %}" class="bg-gray-500 text-white px-4 py-2 rounded mb-4 inline-block">Edit</a>
+                        <a href="{% url 'delete_project' project.id %}" class="bg-red-500 text-white px-4 py-2 rounded mb-4 inline-block">Delete</a>
                         {% endif %}
 
                     </td>
