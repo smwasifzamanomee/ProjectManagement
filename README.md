@@ -4,7 +4,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ProjectManagement.git
+   git clone git@github.com:smwasifzamanomee/ProjectManagement.git
    cd ProjectManagement
 
    python -m venv venv
